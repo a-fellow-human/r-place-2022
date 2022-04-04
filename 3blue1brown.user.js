@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         3Blue1Brown Overlay
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Keep the canvas beautiful!
 // @author       A Fellow Human
 // @match        https://hot-potato.reddit.com/embed*
@@ -12,15 +12,16 @@
 // ==/UserScript==
 if (window.top !== window.self) {
     window.addEventListener('load', () => {
-            document.getElementsByTagName("mona-lisa-embed")[0].shadowRoot.children[0].getElementsByTagName("mona-lisa-canvas")[0].shadowRoot.children[0].appendChild(
-        (function () {
-            const i = document.createElement("img");
-            i.src = "https://i.imgur.com/dceUFCh.png";
-            i.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 2001px;height: 2001px;";
-            console.log(i);
-            return i;
-        })())
+        const image = document.createElement("img");
+        image.src = "https://i.imgur.com/GVowVH4.png";
 
-    }, false);
+        image.onload = () => {
+             image.style = `position: absolute; left: 0; top: 0; width: ${image.width/3}px; height: ${image.height/3}px; image-rendering: pixelated; z-index: 1`;
+        }
 
+        // Overlay image
+        const camera = document.querySelector("mona-lisa-embed").shadowRoot.querySelector("mona-lisa-camera");
+        const canvas = camera.querySelector("mona-lisa-canvas");
+        canvas.shadowRoot.querySelector('.container').appendChild(image);
+   });
 }
