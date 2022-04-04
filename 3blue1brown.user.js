@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         3Blue1Brown Overlay
+// @name         3Blue1Brown Overlay (Forked from Better Alliance)
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Keep the canvas beautiful!
 // @author       A Fellow Human
 // @match        https://hot-potato.reddit.com/embed*
@@ -13,7 +13,7 @@
 if (window.top !== window.self) {
     window.addEventListener('load', () => {
         const image = document.createElement("img");
-        image.src = "https://i.imgur.com/GVowVH4.png";
+        image.src = "https://i.imgur.com/BnAxLy1.png";
 
         image.onload = () => {
              image.style = `position: absolute; left: 0; top: 0; width: ${image.width/3}px; height: ${image.height/3}px; image-rendering: pixelated; z-index: 1`;
